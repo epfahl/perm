@@ -1,4 +1,11 @@
 defmodule Perm.Lehmer do
+  @moduledoc """
+  Lehmer encoding of permutations, and corresponding decoding.
+
+  The implementations of encoding and decoding follow the in-place algorithms described
+  [here](https://en.wikipedia.org/wiki/Lehmer_code#Encoding_and_decoding)
+  """
+
   @doc """
   Return the Lehmer encoding of the given permuation of 0..n-1.
   """
