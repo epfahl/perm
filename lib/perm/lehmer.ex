@@ -2,11 +2,13 @@ defmodule Perm.Lehmer do
   @doc """
   Return the Lehmer encoding of the given permuation of 0..n-1.
   """
-  def encode(perm) do
+  def encode([_ | _] = perm) do
     with {:ok, perm} <- validate(perm) do
       do_encode([], perm)
     end
   end
+
+  def encode([]), do: []
 
   defp do_encode(acc, [v | right]) do
     u = dec_right(v, right)
@@ -22,13 +24,15 @@ defmodule Perm.Lehmer do
   @doc """
   Return the permutation of 0..n-1 corresponding to the given Lehmer code.
   """
-  def decode(code) do
+  def decode([_ | _] = code) do
     perm = do_decode([], code |> Enum.reverse())
 
     with {:ok, perm} <- validate(perm) do
       perm
     end
   end
+
+  def decode([]), do: []
 
   defp do_decode(acc, [h | t]) do
     u = inc_left(h, acc)

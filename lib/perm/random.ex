@@ -13,7 +13,7 @@ defmodule Perm.Random do
   []
   ```
   """
-  def shuffle(items) when is_list(items) do
+  def shuffle([_ | _] = items) do
     a = from_list_fixed(items)
     size = :array.size(a)
 
@@ -24,7 +24,7 @@ defmodule Perm.Random do
     |> :array.to_list()
   end
 
-  def run([]), do: []
+  def shuffle([]), do: []
 
   defp swap(a, i, j) do
     temp = :array.get(i, a)
