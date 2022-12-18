@@ -9,6 +9,9 @@ defmodule Perm.Random do
   Perm.Random.shuffle([1, 2, 3])
   [2, 1, 3]   # example return
 
+  Perm.Random.shuffle(1..3)
+  [3, 1, 2]   # example return
+
   Perm.Random.run([])
   []
   ```
@@ -22,6 +25,10 @@ defmodule Perm.Random do
       swap(acc, i, j)
     end)
     |> :array.to_list()
+  end
+
+  def shuffle(%Range{} = items) do
+    shuffle(items |> Enum.to_list())
   end
 
   def shuffle([]), do: []
