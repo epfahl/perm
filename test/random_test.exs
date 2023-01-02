@@ -13,7 +13,6 @@ defmodule RandomTest do
     items = [:a, :b, :c, :d]
     perm = Random.shuffle(items)
 
-    {tag, _} = Validation.validate(perm, items)
-    assert tag == :ok
+    assert {:ok, _} = Validation.validate(perm, items)
   end
 end
